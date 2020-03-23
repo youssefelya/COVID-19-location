@@ -1,14 +1,33 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-import GoogleMap from  "./components/GoogleMap";
-import GooglePosition from './components/GooglePosition';
+import LoginScreen from './components/sign/LoginScreen';
+import GooglePosition from "./components/GooglePosition";
+import { TabNavigator} from 'react-navigation';
+import {StatusBar} from "react-native-web";
 
+
+const Tabs = TabNavigator({
+      Map :  {screen: GooglePosition},
+      Search : {screen: LoginScreen},
+    }, {
+      //tabBarPosition:'up',
+      tabBarOptions:{
+        showIcon : true,
+        showLabel: false,
+        pressColor: "",
+        style :{
+          backgroundColor: "#a2273c",
+          borderTopWidth: 1,
+
+        }
+      }
+    }
+)
 export default function App() {
-  return (
-    <View style={{flex: 1}}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <GooglePosition />
-    </View>
+  return (<View style={{flex:1, marginBottom:20}}>
+        <StatusBar hidden={true} />
+        <Tabs />
+      </View>
   );
 }
 

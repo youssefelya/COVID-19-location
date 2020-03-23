@@ -1,7 +1,7 @@
 import React, { Component } from "react";
-import { Platform, StyleSheet,  Text,  View,  Alert,  TouchableOpacity } from "react-native";
+import {Image, StyleSheet, Text, View, Alert, TouchableOpacity} from "react-native";
 import MapView, {Marker} from "react-native-maps";
-import GoogleMap from './GoogleMap';
+import * as Permissions from 'expo-permissions';
 
 export default class GooglePosition extends Component {
     state = {
@@ -15,8 +15,23 @@ export default class GooglePosition extends Component {
     };
     constructor(props) {
         super(props);
-        this.findCoordinates();
+       this.findCoordinates();
     }
+    static navigationOptions={
+        tabBarIcon:()=>{
+            return <Image source = {require('./icons/map.png')} style={{width:20, height: 20}} />}
+    }
+
+ /*   async obtainLocationPermission(){
+        let permission = await Permissions.getAsync(Permissions.LOCATION);
+        if(permission.status !== 'granted'){
+            permission = await Permissions.askAsync(Permissions.LOCATION);
+            if(permission.status != 'granted'){
+                Alert.alert('Permission not granted to get location');
+            }else{}
+        }
+        return permission;
+    }*/
 
     findCoordinates = () => {
         navigator.geolocation.getCurrentPosition(
@@ -25,15 +40,14 @@ export default class GooglePosition extends Component {
                 let latitude = position.coords.latitude;
                 let longitude = position.coords.longitude;
                 const acc = position.coords.accuracy;
-                const region = regionFrom(latitude, longitude,acc);
-                this.setState({location: location,  points:region });
+                const region = regionFrom(latitude, longitude, acc);
+                this.setState({location: location, points: region});
             },
             error => Alert.alert(error.message),
-            { enableHighAccuracy: true, timeout: 20000, maximumAge: 1000 }
+            {enableHighAccuracy: true, timeout: 20000, maximumAge: 1000}
         );
     };
     render() {
-
         return (
             <View style={{flex:1}}>
                 {this.state.points.latitude ?<MapView
@@ -46,10 +60,13 @@ export default class GooglePosition extends Component {
                                 latitude: 32.53432451735201,
                                 longitude: -1.9690750709385767
                             }}
-                            title={'Effected place'}
+                            title={'Hopitale Hassan 2'}
                         />
                 </MapView>
-                    : null }
+                    : <TouchableOpacity style ={styles.container}
+                                        onPress={this. findCoordinates} >
+                        <Text>Please Activate your location</Text>
+                    </TouchableOpacity>}
 
             </View>
         );
