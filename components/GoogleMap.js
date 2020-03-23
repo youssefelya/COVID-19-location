@@ -1,9 +1,12 @@
 
 import React from 'react';
-import {View } from 'react-native';
+import {  View } from 'react-native';
 import MapView from "react-native-maps";
 
 class GoogleMap extends React.Component{
+    constructor(props) {
+        super(props);
+    }
 
     render(){
         return(<View style={{ flex: 1 }}>
