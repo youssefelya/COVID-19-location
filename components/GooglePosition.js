@@ -7,8 +7,8 @@ export default class GooglePosition extends Component {
     state = {
         location: null,
         points : {
-            latitude: null,
-            longitude:null,
+            latitude:33.5731104 ,
+            longitude:-7.5898434,
             latitudeDelta: 0.0043,
             longitudeDelta: 0.591,
         },

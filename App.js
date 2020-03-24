@@ -1,9 +1,10 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-import LoginScreen from './components/sign/LoginScreen';
+import LoginScreen from './components/LoginScreen';
 import GooglePosition from "./components/GooglePosition";
 import { TabNavigator} from 'react-navigation';
 import {StatusBar} from "react-native-web";
+import MapContainer  from './components/MapContainer';
 
 
 const Tabs = TabNavigator({
@@ -24,11 +25,15 @@ const Tabs = TabNavigator({
     }
 )
 export default function App() {
-  return (<View style={{flex:1, marginBottom:20}}>
-        <StatusBar hidden={true} />
-        <Tabs />
-      </View>
+
+  return(<MapContainer  />
   );
+
+  // return (<View style={{flex:1, marginBottom:20}}>
+  //       <StatusBar hidden={true} />
+  //       <Tabs />
+  //     </View>
+  // );
 }
 
 const styles = StyleSheet.create({
