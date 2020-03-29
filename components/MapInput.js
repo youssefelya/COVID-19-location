@@ -18,7 +18,7 @@ export default class MapInput extends React.Component{
                     }
                     }
                     query={{
-                        key: '',
+                        key: 'AIzaSyBnY9hS0qnAVrihYT_iKj8daNJ3uOdhtcs',
                         language:'en'
                     }}
                     nearbyPlacesAPI='GooglePlaceSearch'

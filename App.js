@@ -3,13 +3,15 @@ import { StyleSheet, Text, View } from 'react-native';
 import LoginScreen from './components/LoginScreen';
 import GooglePosition from "./components/GooglePosition";
 import { TabNavigator} from 'react-navigation';
+import MoreInfoVictim from './components/MoreInfoVictim';
+import MapContainer from './components/MapContainer';
 import {StatusBar} from "react-native-web";
-import MapContainer  from './components/MapContainer';
-
 
 const Tabs = TabNavigator({
       Map :  {screen: GooglePosition},
-      Search : {screen: LoginScreen},
+      Login : {screen: LoginScreen},
+  MoreInfoVictim : {screen: MoreInfoVictim},
+  MapContainer : {screen : MapContainer}
     }, {
       //tabBarPosition:'up',
       tabBarOptions:{
@@ -25,15 +27,15 @@ const Tabs = TabNavigator({
     }
 )
 export default function App() {
-
+/*
   return(<MapContainer  />
   );
-
-  // return (<View style={{flex:1, marginBottom:20}}>
-  //       <StatusBar hidden={true} />
-  //       <Tabs />
-  //     </View>
-  // );
+*/
+    return (<View style={{flex:1, marginBottom:20}}>
+          <StatusBar hidden={true} />
+           <Tabs />
+         </View>
+    );
 }
 
 const styles = StyleSheet.create({

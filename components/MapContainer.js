@@ -1,7 +1,13 @@
 import React from 'react';
-import {View,Text} from 'react-native';
+import {View,Text, Button, Image} from 'react-native';
 import MapInput from './MapInput';
 export default class MapContainer  extends React.Component{
+
+    static navigationOptions={
+        tabBarIcon:()=>{
+            return <Image source = {require('./icons/moreinfo.png')} style={{width:20, height: 20}} />}
+    }
+
 
     state={
         region:{}
@@ -37,6 +43,12 @@ export default class MapContainer  extends React.Component{
     onMapRegionChange(region){
         this.setState({region});
     }
+    infoForm(){
+        console.log("clicked");
+        console.log(this.props.navigate);
+        this.props.navigation.navigate('MoreInfoVictim');
+
+    }
 
     render(){
         return(
@@ -46,8 +58,9 @@ export default class MapContainer  extends React.Component{
                     <MapInput notifyChange={(loc)=>this.getCoordsFromName(loc)}/>
                 </View>
                 {this.state.region['latitude']?
-                    <View style ={{flex:1}}></View>:null
+                    <View style ={{flex:1}}></View>:<Text>Nothing yet ...</Text>
                 }
+                <Button onPress={this.infoForm} title='More Information?'/>
             </View>
         );
     }
