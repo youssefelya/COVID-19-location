@@ -5,10 +5,9 @@ export default class MapContainer  extends React.Component{
 
     static navigationOptions={
         tabBarIcon:()=>{
+            // @ts-ignore
             return <Image source = {require('./icons/moreinfo.png')} style={{width:20, height: 20}} />}
     }
-
-
     state={
         region:{}
     }
@@ -43,12 +42,7 @@ export default class MapContainer  extends React.Component{
     onMapRegionChange(region){
         this.setState({region});
     }
-    infoForm(){
-        console.log("clicked");
-        console.log(this.props.navigate);
-        this.props.navigation.navigate('MoreInfoVictim');
-
-    }
+ 
 
     render(){
         return(
@@ -60,7 +54,6 @@ export default class MapContainer  extends React.Component{
                 {this.state.region['latitude']?
                     <View style ={{flex:1}}></View>:<Text>Nothing yet ...</Text>
                 }
-                <Button onPress={this.infoForm} title='More Information?'/>
             </View>
         );
     }

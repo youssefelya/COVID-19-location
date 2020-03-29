@@ -7,7 +7,7 @@ export default class GooglePosition extends Component {
     state = {
         location: null,
         points : {
-            latitude:33.5731104 ,
+            latitude:null ,
             longitude:-7.5898434,
             latitudeDelta: 0.0043,
             longitudeDelta: 0.591,
@@ -17,10 +17,10 @@ export default class GooglePosition extends Component {
         super(props);
        this.findCoordinates();
     }
-    static navigationOptions={
-        tabBarIcon:()=>{
-            return <Image source = {require('./icons/map.png')} style={{width:20, height: 20}} />}
-    }
+    // static navigationOptions={
+    //     tabBarIcon:()=>{
+    //         return <Image source = {require('./icons/map.png')} style={{width:20, height: 20}} />}
+    // }
 
  /*   async obtainLocationPermission(){
         let permission = await Permissions.getAsync(Permissions.LOCATION);
@@ -62,8 +62,8 @@ export default class GooglePosition extends Component {
                             }}
                             title={'Hopitale Hassan 2'}
                         />
-                </MapView>
-                    : <TouchableOpacity style ={styles.container}
+                </MapView>  : 
+                <TouchableOpacity style ={styles.container}
                                         onPress={this. findCoordinates} >
                         <Text>Please Activate your location</Text>
                     </TouchableOpacity>}

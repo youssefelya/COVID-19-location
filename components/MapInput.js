@@ -1,6 +1,6 @@
 import React from 'react';
 import {View, Text} from 'react-native';
-import {GooglePlacesAutocomplete} from 'react-native-google-places-autocomplete';
+import GooglePlacesAutocomplete from 'react-native-google-places-autocomplete';
 
 
 export default class MapInput extends React.Component{
