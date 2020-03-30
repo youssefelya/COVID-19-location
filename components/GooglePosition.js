@@ -50,7 +50,8 @@ export default class GooglePosition extends Component {
     render() {
         return (
             <View style={{flex:1}}>
-                {this.state.points.latitude ?<MapView
+                {this.state.points.latitude 
+                ?<MapView
                     style={{ flex: 1 }}
                     initialRegion={
                         this.state.points

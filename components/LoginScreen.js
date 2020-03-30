@@ -10,11 +10,6 @@ export default class LoginScreen extends Component {
         };
     }
 
-    static navigationOptions={
-        tabBarIcon:()=>{
-            return <Image source = {require('./icons/login.png')} style={{width:20, height: 20}} />}
-    }
-
     onLogin() {
         const { email, password } = this.state;
 
