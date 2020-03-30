@@ -1,7 +1,7 @@
 import React from 'react';
-import { StyleSheet, Text, View, TouchableOpacity, Button } from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity, Button, Alert } from 'react-native';
 import axios from 'axios';
-import MapView from "react-native-maps";
+import MapView, {Marker} from "react-native-maps";
 import { SearchBar } from 'react-native-elements';
 
 
@@ -19,17 +19,6 @@ export default class MapContainer extends React.Component {
     hied:false
   }
 
-  componentDidMount() {
-    const key ='AIzaSyBnY9hS0qnAVrihYT_iKj8daNJ3uOdhtcs';
-  }
-
-  
-
-  shouldComponentUpdate(prevState) {
-    // Only update if bricks change
-    return prevState > this.state.placeSearch;
-  }
-
   onChangeText(text){
     this.setState({placeSearch:text});
    // console.log('', this.state.placeSearch);
@@ -40,12 +29,13 @@ export default class MapContainer extends React.Component {
   }
   }
   searchNow= ()=>{
-    console.log(JSON.stringify(this.state.placeSearch));
+  //  console.log(JSON.stringify(this.state.placeSearch));
     const key ='AIzaSyBnY9hS0qnAVrihYT_iKj8daNJ3uOdhtcs';
     const placeName = JSON.stringify(this.state.placeSearch);
     const url = 'https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input='+placeName+'&inputtype=textquery&fields=photos,formatted_address,name,rating,opening_hours,geometry&key='+key
     axios.get(url)
     .then(response => {
+        console.log("################################################");
       console.log(response.data);
       this.setState({data:JSON.stringify(response.data)});
       this.setState({candidates:JSON.stringify(response.data.candidates[0].geometry.location.lat)});
@@ -60,11 +50,16 @@ export default class MapContainer extends React.Component {
     });
     this.setState({hied:false});
   }
-    
+  
+  submitPlace = ()=>{
+      const placeCordinate = this.state.positionCoordinate;
+      Alert.alert('Thank you');
+  }
+
+
   render(){
   return (
     <View style={{flex : 1}}>
-
     <View style={styles.searchContainer}>
     <SearchBar
     style={{flex:1,    width: 150,
@@ -80,6 +75,9 @@ export default class MapContainer extends React.Component {
         <Text style ={styles.searchButton}>Search</Text>
      </TouchableOpacity>
      </View>:null}
+     <TouchableOpacity onPress={this.submitPlace }>
+        <Text style ={styles.searchButton}>Submit place</Text>
+     </TouchableOpacity>
     </View>
 
     <MapView
@@ -88,8 +86,6 @@ export default class MapContainer extends React.Component {
       }
       region={this.state.positionCoordinate}
       > 
-
-
 
     </MapView>
     </View>

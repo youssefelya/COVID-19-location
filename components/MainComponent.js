@@ -3,6 +3,7 @@ import { View, Text } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { Ionicons } from '@expo/vector-icons';
 import GooglePositio from './GooglePosition';
+import MapContainer from './google-map-search/MapContainer';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
 import LoginScreen from './LoginScreen';
@@ -24,6 +25,11 @@ export default function MainComponent() {
                 'ios-log-in' : 
                 'ios-log-in';
               } 
+              if (route.name === 'Search') {
+                iconName = focused
+                  ? 'ios-map'
+                  : 'ios-map-outline';
+              }
               // You can return any component that you like here!
               return <Ionicons name={iconName} size={size} color={color} />;
             },
@@ -35,6 +41,7 @@ export default function MainComponent() {
         >
           <Tab.Screen name="Home" component={GooglePositio} />
           <Tab.Screen name="Login" component={LoginScreen} />
+          <Tab.Screen name="Search" component={MapContainer} />
         </Tab.Navigator>
       </NavigationContainer>
     ); 
