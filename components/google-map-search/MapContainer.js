@@ -30,7 +30,7 @@ export default class MapContainer extends React.Component {
   }
   searchNow= ()=>{
   //  console.log(JSON.stringify(this.state.placeSearch));
-    const key ='AIzaSyBnY9hS0qnAVrihYT_iKj8daNJ3uOdhtcs';
+    const key ='key'
     const placeName = JSON.stringify(this.state.placeSearch);
     const url = 'https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input='+placeName+'&inputtype=textquery&fields=photos,formatted_address,name,rating,opening_hours,geometry&key='+key
     axios.get(url)
